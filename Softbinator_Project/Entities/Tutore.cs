@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Softbinator_Project.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,5 +23,6 @@ namespace Softbinator_Project.Entities
         public string CNP { get; set; }
 
         public ICollection<Pacient> Pacienti { get; set; }
+  
     }
 }

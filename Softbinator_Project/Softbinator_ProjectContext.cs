@@ -32,6 +32,7 @@ namespace Softbinator_Project
             modelBuilder.ApplyConfiguration(new PacientConfiguration());
             modelBuilder.ApplyConfiguration(new CabinetConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

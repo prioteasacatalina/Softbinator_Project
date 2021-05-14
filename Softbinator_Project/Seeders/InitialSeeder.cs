@@ -103,7 +103,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 120,
                       Greutate = 30,
                       Alergie = "capsuni",
-                      TutoreId = tutoreid
+                      TutoreId = tutoreid,
+                      UserId = new Guid("7338161f-4259-4212-6605-08d9156da120")
                   };
 
                   var pacient2 = new Pacient
@@ -115,7 +116,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 125,
                       Greutate = 35,
                       Alergie = "kiwi",
-                      TutoreId = tutoreid
+                      TutoreId = tutoreid,
+                      UserId = new Guid("8dd37e5f-ba67-4fae-6606-08d9156da120")
                   };
 
                   var pacient3 = new Pacient
@@ -127,7 +129,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 130,
                       Greutate = 35,
                       Alergie = "piersici",
-                      TutoreId = 2
+                      TutoreId = 2,
+                      UserId = new Guid("06ff62e3-28b9-4826-fe37-08d9156ef351")
                   };
 
                   var pacient4 = new Pacient
@@ -139,7 +142,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 130,
                       Greutate = 27,
                       Alergie = "ananas",
-                      TutoreId = 3
+                      TutoreId = 3,
+                      UserId = new Guid("77086aca-1c33-4ca4-fe38-08d9156ef351")
                   };
 
                   var pacient5 = new Pacient
@@ -151,7 +155,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 128,
                       Greutate = 40,
                       Alergie = "pisici",
-                      TutoreId = 4
+                      TutoreId = 4,
+                      UserId = new Guid("d0190e3a-b85b-45a5-fe39-08d9156ef351")
                   };
 
                   var pacient6 = new Pacient
@@ -163,7 +168,8 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 121,
                       Greutate = 26.5,
                       Alergie = "caini",
-                      TutoreId = 5
+                      TutoreId = 5,
+                      UserId = new Guid("4f099385-2fd3-4b9b-fe3a-08d9156ef351")
                   };
 
                   _context.Pacienti.Add(pacient1);
@@ -235,19 +241,22 @@ namespace Softbinator_Project.Seeders
                     Specializare = "radiolog",
                     CNP = "1741214845037",
                     Email = "popa_ioan@yahoo.com",
-                    CabinetId = cabinetId
+                    CabinetId = cabinetId,
+                    UserId = new Guid("63df6fa5-4341-4f00-6603-08d9156da120")
+                  
 
                 };
 
                 var doctor2 = new Doctor
                 {
-                    Nume = "Popa",
-                    Prenume = "Ioan",
-                    Telefon = "0743721894",
+                    Nume = "Biza",
+                    Prenume = "Adriana",
+                    Telefon = "0739123485",
                     Specializare = "radiolog",
-                    CNP = "1741214845037",
-                    Email = "popa_ioan@yahoo.com",
-                    CabinetId = 2
+                    CNP = "2981402968753",
+                    Email = "biza_adri@yahoo.com",
+                    CabinetId = 2,
+                    UserId = new Guid("3911019d-e118-4736-4c1c-08d914684b6f")
 
                 };
 
@@ -259,7 +268,8 @@ namespace Softbinator_Project.Seeders
                     Specializare = "ORL",
                     CNP = "1210910876263",
                     Email = "mus_and@yahoo.com",
-                    CabinetId = 3
+                    CabinetId = 3,
+                    UserId = new Guid("ca1c7e6f-c027-482a-6604-08d9156da120")
 
                 };
 
@@ -279,27 +289,27 @@ namespace Softbinator_Project.Seeders
             {
                 var programare1 = new Programare
                 {
-                    PacientId = 1,
-                    DoctorId = 1,
-                    Data = "04/20/2021",
+                    PacientId = 8,
+                    DoctorId = 8,
+                    Data = new DateTime(2021,4,20),
                     Tratament = "imobilizare la pat",
                     Observatii = "somn de voie"
                 };
 
                 var programare2 = new Programare
                 {
-                    PacientId = 2,
-                    DoctorId = 2,
-                    Data = "05/21/2021",
+                    PacientId = 9,
+                    DoctorId = 9,
+                    Data = new DateTime(2021, 5, 20),
                     Tratament = "ghips",
                     Observatii = "picior fracturat"
                 };
 
                 var programare3 = new Programare
                 {
-                    PacientId = 3,
-                    DoctorId = 3,
-                    Data = "04/28/2021",
+                    PacientId = 10,
+                    DoctorId = 10,
+                    Data = new DateTime(2021, 4, 23),
                     Tratament = "Systane Balance",
                     Observatii = "control lunar"              
                 };

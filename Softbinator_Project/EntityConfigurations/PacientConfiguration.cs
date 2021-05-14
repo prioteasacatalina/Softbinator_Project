@@ -17,7 +17,6 @@ namespace Softbinator_Project.EntityConfigurations
                 .HasMaxLength(100)
                 .IsRequired();
 
-
             builder.Property(a => a.Prenume)
                     .HasColumnType("varchar(100)")
                     .HasMaxLength(100)

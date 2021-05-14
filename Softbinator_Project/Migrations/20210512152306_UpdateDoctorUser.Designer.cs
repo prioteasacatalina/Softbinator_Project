@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Softbinator_Project;
 
 namespace Softbinator_Project.Migrations
 {
     [DbContext(typeof(Softbinator_ProjectContext))]
-    partial class Softbinator_ProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210512152306_UpdateDoctorUser")]
+    partial class UpdateDoctorUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

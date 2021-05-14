@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Softbinator_Project;
 
 namespace Softbinator_Project.Migrations
 {
     [DbContext(typeof(Softbinator_ProjectContext))]
-    partial class Softbinator_ProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210512145043_UpdateStringtoDatetime")]
+    partial class UpdateStringtoDatetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,15 +167,9 @@ namespace Softbinator_Project.Migrations
                     b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CabinetId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Doctori");
                 });
@@ -213,15 +209,9 @@ namespace Softbinator_Project.Migrations
                     b.Property<int>("TutoreId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TutoreId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Pacienti");
                 });
@@ -332,6 +322,12 @@ namespace Softbinator_Project.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("DoctorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DoctorId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -376,6 +372,8 @@ namespace Softbinator_Project.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId1");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -457,15 +455,7 @@ namespace Softbinator_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Softbinator_Project.Entities.User", "User")
-                        .WithOne("Doctor")
-                        .HasForeignKey("Softbinator_Project.Entities.Doctor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Cabinet");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Softbinator_Project.Entities.Pacient", b =>
@@ -476,15 +466,7 @@ namespace Softbinator_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Softbinator_Project.Entities.User", "User")
-                        .WithOne("Pacient")
-                        .HasForeignKey("Softbinator_Project.Entities.Pacient", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Tutore");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Softbinator_Project.Entities.Programare", b =>
@@ -504,6 +486,15 @@ namespace Softbinator_Project.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Pacient");
+                });
+
+            modelBuilder.Entity("Softbinator_Project.Entities.User", b =>
+                {
+                    b.HasOne("Softbinator_Project.Entities.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId1");
+
+                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("Softbinator_Project.Entities.UserRole", b =>
@@ -560,10 +551,6 @@ namespace Softbinator_Project.Migrations
 
             modelBuilder.Entity("Softbinator_Project.Entities.User", b =>
                 {
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Pacient");
-
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

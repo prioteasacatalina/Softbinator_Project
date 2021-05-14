@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Softbinator_Project;
 
 namespace Softbinator_Project.Migrations
 {
     [DbContext(typeof(Softbinator_ProjectContext))]
-    partial class Softbinator_ProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210509181213_AddedRefreshToken")]
+    partial class AddedRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,15 +167,9 @@ namespace Softbinator_Project.Migrations
                     b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CabinetId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Doctori");
                 });
@@ -213,15 +209,9 @@ namespace Softbinator_Project.Migrations
                     b.Property<int>("TutoreId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("TutoreId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Pacienti");
                 });
@@ -233,8 +223,8 @@ namespace Softbinator_Project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Data")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
@@ -457,15 +447,7 @@ namespace Softbinator_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Softbinator_Project.Entities.User", "User")
-                        .WithOne("Doctor")
-                        .HasForeignKey("Softbinator_Project.Entities.Doctor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Cabinet");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Softbinator_Project.Entities.Pacient", b =>
@@ -476,15 +458,7 @@ namespace Softbinator_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Softbinator_Project.Entities.User", "User")
-                        .WithOne("Pacient")
-                        .HasForeignKey("Softbinator_Project.Entities.Pacient", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Tutore");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Softbinator_Project.Entities.Programare", b =>
@@ -560,10 +534,6 @@ namespace Softbinator_Project.Migrations
 
             modelBuilder.Entity("Softbinator_Project.Entities.User", b =>
                 {
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Pacient");
-
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

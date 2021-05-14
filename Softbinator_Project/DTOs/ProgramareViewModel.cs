@@ -7,7 +7,7 @@ namespace Softbinator_Project.DTOs
 {
     public class ProgramareViewModel
     {
-        public string Data { get; set; }
+        public DateTime Data { get; set; }
 
         public string Tratament { get; set; }
 

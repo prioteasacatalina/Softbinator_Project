@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Softbinator_Project.DTOs
+namespace Softbinator_Project.Services.ProgramareServices
 {
-    public class StatsDTO
+    public class ProgramareService : IProgramareService
     {
-        public IQueryable<PacientViewModel> Statistica;
     }
 }

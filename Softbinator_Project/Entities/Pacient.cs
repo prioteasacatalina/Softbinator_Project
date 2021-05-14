@@ -28,5 +28,9 @@ namespace Softbinator_Project.Entities
         public Tutore Tutore { get; set; }
 
         public ICollection<Programare> Programari { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

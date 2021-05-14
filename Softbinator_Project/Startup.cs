@@ -82,8 +82,13 @@ namespace Softbinator_Project
                     };
                 });
 
-
-
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Doctor", policy => policy.RequireRole("Doctor").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+             //   opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient", "Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+            });
 
         }
 
