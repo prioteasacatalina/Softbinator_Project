@@ -23,6 +23,7 @@ namespace Softbinator_Project.Controllers
             _doctorService = doctorService;
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,7 +31,7 @@ namespace Softbinator_Project.Controllers
             return Ok(result);
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "Doctor")]
         [HttpPost]
         public IActionResult Create(DoctorDto model)
         {
@@ -38,8 +39,9 @@ namespace Softbinator_Project.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Edit([FromRoute] int id, DoctorDto model)
+        [Authorize(Policy = "Doctor")]
+        [HttpPut] //("{id}")
+        public IActionResult Edit(int id, DoctorDto model) //[FromRoute]
         {
             _doctorService.EditDoctor(id, model);
             return Ok();

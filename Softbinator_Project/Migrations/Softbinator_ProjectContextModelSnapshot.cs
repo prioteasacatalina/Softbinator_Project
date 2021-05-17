@@ -165,7 +165,7 @@ namespace Softbinator_Project.Migrations
                     b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -173,7 +173,8 @@ namespace Softbinator_Project.Migrations
                     b.HasIndex("CabinetId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Doctori");
                 });
@@ -213,7 +214,7 @@ namespace Softbinator_Project.Migrations
                     b.Property<int>("TutoreId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -221,7 +222,8 @@ namespace Softbinator_Project.Migrations
                     b.HasIndex("TutoreId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Pacienti");
                 });
@@ -460,8 +462,7 @@ namespace Softbinator_Project.Migrations
                     b.HasOne("Softbinator_Project.Entities.User", "User")
                         .WithOne("Doctor")
                         .HasForeignKey("Softbinator_Project.Entities.Doctor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Cabinet");
 
@@ -479,8 +480,7 @@ namespace Softbinator_Project.Migrations
                     b.HasOne("Softbinator_Project.Entities.User", "User")
                         .WithOne("Pacient")
                         .HasForeignKey("Softbinator_Project.Entities.Pacient", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Tutore");
 

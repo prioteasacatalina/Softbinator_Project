@@ -23,6 +23,7 @@ namespace Softbinator_Project.Controllers
             _tutoreService = tutoreService;
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
@@ -38,8 +39,9 @@ namespace Softbinator_Project.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Edit([FromRoute] int id, TutoreDto model)
+        [Authorize(Policy = "Admin")]
+        [HttpPut] //("{id}")
+        public IActionResult Edit(int id, TutoreDto model)  //[FromRoute]
         {
             _tutoreService.EditTutore(id, model);
             return Ok();

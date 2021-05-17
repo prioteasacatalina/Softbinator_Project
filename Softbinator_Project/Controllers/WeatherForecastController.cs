@@ -25,7 +25,7 @@ namespace Softbinator_Project.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "Pacient")]
+        [Authorize(Policy = "Admin")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

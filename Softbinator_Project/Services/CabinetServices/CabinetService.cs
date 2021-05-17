@@ -21,7 +21,6 @@ namespace Softbinator_Project.Services
         {
             var cabinet = new Cabinet
             {
-                Id = model.Id,
                 Nume = model.Nume,
                 Etaj = model.Etaj,
                 Numar = model.Numar,

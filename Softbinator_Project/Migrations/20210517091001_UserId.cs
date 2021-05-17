@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Softbinator_Project.Migrations
 {
-    public partial class UpdateDoctorUser : Migration
+    public partial class UserId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,27 +27,27 @@ namespace Softbinator_Project.Migrations
                 name: "UserId",
                 table: "Pacienti",
                 type: "uniqueidentifier",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                nullable: true);
 
             migrationBuilder.AddColumn<Guid>(
                 name: "UserId",
                 table: "Doctori",
                 type: "uniqueidentifier",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                nullable: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pacienti_UserId",
                 table: "Pacienti",
                 column: "UserId",
-                unique: true);
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctori_UserId",
                 table: "Doctori",
                 column: "UserId",
-                unique: true);
+                unique: true,
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Doctori_AspNetUsers_UserId",
@@ -55,7 +55,7 @@ namespace Softbinator_Project.Migrations
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.SetNull);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Pacienti_AspNetUsers_UserId",
@@ -63,7 +63,7 @@ namespace Softbinator_Project.Migrations
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.SetNull);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Softbinator_Project.DTOs;
-using Softbinator_Project.Services.CabinetServices;
+using Softbinator_Project.Services.ProgramareServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,38 +12,38 @@ namespace Softbinator_Project.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class CabinetController : ControllerBase
+    public class ProgramareController : ControllerBase
     {
         private readonly Softbinator_ProjectContext _context;
-        private readonly ICabinetService _cabinetService;
+        private readonly IProgramareService _programareService;
 
-        public CabinetController(Softbinator_ProjectContext context, ICabinetService cabinetService)
+        public ProgramareController(Softbinator_ProjectContext context, IProgramareService programareService)
         {
             _context = context;
-            _cabinetService = cabinetService;
+            _programareService = programareService;
         }
 
         [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _cabinetService.GetCabinete();
+            var result = _programareService.GetProgramari();
             return Ok(result);
         }
 
         [Authorize(Policy = "Admin")]
         [HttpPost]
-        public IActionResult Create(CabinetDto model)
+        public IActionResult Create(ProgramareDto model)
         {
-            _cabinetService.CreateCabinet(model);
+            _programareService.CreateProgramare(model);
             return Ok();
         }
 
         [Authorize(Policy = "Admin")]
         [HttpPut] //("{id}")
-        public IActionResult Edit(int id, CabinetDto model) //[FromRoute]
+        public IActionResult Edit(int id, ProgramareDto model) //[FromRoute]
         {
-            _cabinetService.EditCabinet(id, model);
+            _programareService.EditProgramare(id, model);
             return Ok();
         }
     }

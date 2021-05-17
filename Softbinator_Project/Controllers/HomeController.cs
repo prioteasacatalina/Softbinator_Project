@@ -29,13 +29,7 @@ namespace Softbinator_Project.Controllers
         [Authorize(Policy = "Admin")]
         public IActionResult Get()
         {
-            var pacientiDB = _context.Pacienti;
-
-            var pacienti = pacientiDB
-                .OrderBy(d => d.Nume)
-                .Select(PacientViewModel.Projection);
-
-            var afisarepacienti = _context.Pacienti.Include(d => d.Programari).ThenInclude(d => d.Doctor).Select(PacientDB => new PacientViewModel
+            var afisarePacienti = _context.Pacienti.Include(d => d.Programari).ThenInclude(d => d.Doctor).Select(PacientDB => new PacientViewModel
             {
                 Nume = PacientDB.Nume,
                 Prenume = PacientDB.Prenume,
@@ -52,22 +46,8 @@ namespace Softbinator_Project.Controllers
                 }).ToList()
             });
 
-
-            // var result = pacienti;
-            var result = afisarepacienti;
-
-
+            var result = afisarePacienti;
             return Ok(result);
         }
-
-        
-        /*[HttpPost]
-       // [Authorize(Policy = "Admin")]
-        public IActionResult CreateTutoreQuery([FromQuery] TutoreDto model)
-        {
-            _tutoreService.CreateTutore(model);
-            return Ok();
-        }*/
-     
     }
 }

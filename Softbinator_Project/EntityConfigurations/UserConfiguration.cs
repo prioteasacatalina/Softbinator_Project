@@ -13,7 +13,17 @@ namespace Softbinator_Project.EntityConfigurations
        
             public void Configure(EntityTypeBuilder<User> builder)
             {
+
             builder
+                .HasOne(e => e.Pacient)
+                .WithOne(e => e.User)
+                .OnDelete(DeleteBehavior.SetNull);
+            builder 
+                 .HasOne(e => e.Doctor)
+                 .WithOne(e => e.User)
+                 .OnDelete(DeleteBehavior.SetNull);
+
+           /* builder
                 .HasOne(a => a.Doctor)
                 .WithOne(b => b.User)
                 .HasForeignKey<Doctor>(b => b.UserId);
@@ -21,7 +31,7 @@ namespace Softbinator_Project.EntityConfigurations
             builder
                .HasOne(a => a.Pacient)
                .WithOne(b => b.User)
-                .HasForeignKey<Pacient>(b => b.UserId);
+                .HasForeignKey<Pacient>(b => b.UserId);*/
 
             }
         

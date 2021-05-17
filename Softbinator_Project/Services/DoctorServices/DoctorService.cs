@@ -16,6 +16,12 @@ namespace Softbinator_Project.Services.DoctorServices
             _context = context;
         }
 
+        public List<DoctorDto> GetDoctori()
+        {
+            var doctori = _context.Doctori.Select(DoctorDto.Projection).ToList();
+            return doctori;
+        }
+
         public void CreateDoctor(DoctorDto model)
         {
             var doctor = new Doctor
@@ -44,12 +50,6 @@ namespace Softbinator_Project.Services.DoctorServices
             doctor.CabinetId = model.CabinetId;
 
             _context.SaveChanges();
-        }
-
-        public List<DoctorDto> GetDoctori()
-        {
-            var doctori = _context.Doctori.Select(DoctorDto.Projection).ToList();
-            return doctori;
         }
     }
 }

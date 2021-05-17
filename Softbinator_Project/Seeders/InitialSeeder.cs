@@ -183,6 +183,7 @@ namespace Softbinator_Project.Seeders
 
               #endregion
 
+
             #region Cabinet
 
             var cabinete = _context.Cabinete.Any();
@@ -279,6 +280,7 @@ namespace Softbinator_Project.Seeders
             }
             #endregion
 
+            
             #region Programare
 
             var programari = _context.Programari.Any();
@@ -290,7 +292,7 @@ namespace Softbinator_Project.Seeders
                 var programare1 = new Programare
                 {
                     PacientId = 8,
-                    DoctorId = 8,
+                    DoctorId = 4,
                     Data = new DateTime(2021,4,20),
                     Tratament = "imobilizare la pat",
                     Observatii = "somn de voie"
@@ -299,7 +301,7 @@ namespace Softbinator_Project.Seeders
                 var programare2 = new Programare
                 {
                     PacientId = 9,
-                    DoctorId = 9,
+                    DoctorId = 5,
                     Data = new DateTime(2021, 5, 20),
                     Tratament = "ghips",
                     Observatii = "picior fracturat"
@@ -308,7 +310,7 @@ namespace Softbinator_Project.Seeders
                 var programare3 = new Programare
                 {
                     PacientId = 10,
-                    DoctorId = 10,
+                    DoctorId = 6,
                     Data = new DateTime(2021, 4, 23),
                     Tratament = "Systane Balance",
                     Observatii = "control lunar"              
@@ -321,6 +323,8 @@ namespace Softbinator_Project.Seeders
             }
             
             #endregion
+            
         }
+            
     }
 }

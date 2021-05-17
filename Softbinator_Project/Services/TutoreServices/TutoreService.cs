@@ -16,11 +16,16 @@ namespace Softbinator_Project.Services
             _context = context;
         }
 
+        public List<TutoreDto> GetTutori()
+        {
+            var tutori = _context.Tutori.Select(TutoreDto.Projection).ToList();
+            return tutori;
+        }
+
         public void CreateTutore(TutoreDto model)
         {
             var tutore = new Tutore
             {
-                Id = model.Id,
                 Nume = model.Nume,
                 Prenume = model.Prenume,
                 Adresa = model.Adresa,
@@ -45,12 +50,6 @@ namespace Softbinator_Project.Services
             tutore.Telefon = model.Telefon;
           
             _context.SaveChanges();
-        }
-
-        public List<TutoreDto> GetTutori()
-        {
-            var tutori = _context.Tutori.Select(TutoreDto.Projection).ToList();
-            return tutori;
         }
 
     }

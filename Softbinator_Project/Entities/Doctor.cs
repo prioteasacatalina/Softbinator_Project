@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +28,9 @@ namespace Softbinator_Project.Entities
 
         public ICollection<Programare> Programari { get; set; }
 
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
+        
+        [ForeignKey("UserId")]
 
         public User User { get; set; }
 
