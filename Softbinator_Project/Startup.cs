@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Softbinator_Project.Entities;
 using Softbinator_Project.Managers;
 using Softbinator_Project.Seeders;
@@ -37,6 +38,32 @@ namespace Softbinator_Project
             services.AddSeeders();
             services.AddControllers();
             services.AddTransient<TokenManager>();
+
+            services.AddSwaggerGen(s =>
+            {
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement
+               {
+                   {
+                       new OpenApiSecurityScheme
+                       {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+               });
+            });
 
             services.AddDbContext<Softbinator_ProjectContext>(options =>
             {
@@ -97,6 +124,8 @@ namespace Softbinator_Project
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Softbinator_Project v1"));
             }
 
             app.UseHttpsRedirection();

@@ -47,7 +47,7 @@ namespace Softbinator_Project.Managers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(15),
+                Expires = DateTime.Now.AddMinutes(30),
                 SigningCredentials = creds
             };
 
