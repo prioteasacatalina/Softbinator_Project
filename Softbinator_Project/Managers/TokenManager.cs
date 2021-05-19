@@ -23,6 +23,7 @@ namespace Softbinator_Project.Managers
             _userManager = userManager;
             _configuration = configuration;
         }
+
         public async Task<string> CreateAccessToken(User user)
         {
             var userId = user.Id.ToString();

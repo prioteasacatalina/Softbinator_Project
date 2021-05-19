@@ -10,6 +10,7 @@ namespace Softbinator_Project.Services.DoctorServices
     {
         List<DoctorDto> GetDoctori();
         void CreateDoctor(DoctorDto model);
-        void EditDoctor(int id, DoctorDto model);
+        void EditDoctor(DoctorDto model);
+        void DeleteDoctor(int id);
     }
 }

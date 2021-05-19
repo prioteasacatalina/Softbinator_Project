@@ -27,19 +27,19 @@ namespace Softbinator_Project.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto registerdto)
+        public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             var user = new User
             {
-                Email = registerdto.Email,
-                UserName = registerdto.Email
+                Email = registerDto.Email,
+                UserName = registerDto.Email
             };
 
-            var result = await _userManager.CreateAsync(user, registerdto.Password); //rezultatul crearii user-ului; parola este criptata si pusa in baza
+            var result = await _userManager.CreateAsync(user, registerDto.Password); //rezultatul crearii user-ului; parola este criptata si pusa in baza
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, registerdto.Role);
+                await _userManager.AddToRoleAsync(user, registerDto.Role);
                 return Ok();
             }
 

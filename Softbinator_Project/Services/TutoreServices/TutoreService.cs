@@ -33,14 +33,14 @@ namespace Softbinator_Project.Services
                 Email = model.Email,
                 Telefon = model.Telefon                  
             };
+
             _context.Tutori.Add(tutore);
             _context.SaveChanges();
         }
               
 
-        public void EditTutore(int id, TutoreDto model)
+        public void EditTutore(TutoreDto model)
         {
-            var tutori = _context.Tutori.ToList();
             var tutore = _context.Tutori.FirstOrDefault(x => x.Id == model.Id);
             tutore.Nume = model.Nume;
             tutore.Prenume = model.Prenume;
@@ -49,6 +49,13 @@ namespace Softbinator_Project.Services
             tutore.Email = model.Email;
             tutore.Telefon = model.Telefon;
           
+            _context.SaveChanges();
+        }
+
+        public void DeleteTutore(int id)
+        {
+            var tutore = _context.Tutori.FirstOrDefault(x => x.Id == id);
+            _context.Tutori.Remove(tutore);
             _context.SaveChanges();
         }
 

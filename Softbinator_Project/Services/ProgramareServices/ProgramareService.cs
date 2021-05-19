@@ -36,9 +36,8 @@ namespace Softbinator_Project.Services.ProgramareServices
             _context.SaveChanges();
         }
 
-        public void EditProgramare(int id, ProgramareDto model)
+        public void EditProgramare(ProgramareDto model)
         {
-            var programari = _context.Programari.ToList();
             var programare = _context.Programari.FirstOrDefault(x => x.Id == model.Id);
             programare.Data = model.Data;
             programare.Tratament = model.Tratament;
@@ -48,5 +47,13 @@ namespace Softbinator_Project.Services.ProgramareServices
 
             _context.SaveChanges();
         }
+
+        public void DeleteProgramare(int id)
+        {
+            var programare = _context.Programari.FirstOrDefault(x => x.Id == id);
+            _context.Programari.Remove(programare);
+            _context.SaveChanges();
+        }
+
     }
 }

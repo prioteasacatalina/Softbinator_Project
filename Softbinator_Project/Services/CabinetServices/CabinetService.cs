@@ -31,10 +31,8 @@ namespace Softbinator_Project.Services
             _context.SaveChanges();
         }
 
-
-        public void EditCabinet(int id, CabinetDto model)
+        public void EditCabinet(CabinetDto model)
         {
-            var cabinete = _context.Cabinete.ToList();
             var cabinet = _context.Cabinete.FirstOrDefault(x => x.Id == model.Id);
             cabinet.Nume = model.Nume;
             cabinet.Etaj = model.Etaj;
@@ -50,5 +48,13 @@ namespace Softbinator_Project.Services
             var cabinete = _context.Cabinete.Select(CabinetDto.Projection).ToList();
             return cabinete;
         }
+
+        public void DeleteCabinet(int id)
+        {
+            var cabinet = _context.Cabinete.FirstOrDefault(x => x.Id == id);
+            _context.Cabinete.Remove(cabinet);
+            _context.SaveChanges();
+        }
+
     }
 }

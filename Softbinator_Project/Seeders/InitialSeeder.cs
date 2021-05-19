@@ -92,7 +92,7 @@ namespace Softbinator_Project.Seeders
 
               if (!pacienti)
               {
-                  var tutoreid = _context.Tutori.FirstOrDefault().Id;
+                  var tutoreId = _context.Tutori.FirstOrDefault().Id;
 
                   var pacient1 = new Pacient
                   {
@@ -103,7 +103,7 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 120,
                       Greutate = 30,
                       Alergie = "capsuni",
-                      TutoreId = tutoreid,
+                      TutoreId = tutoreId,
                       UserId = new Guid("7338161f-4259-4212-6605-08d9156da120")
                   };
 
@@ -116,7 +116,7 @@ namespace Softbinator_Project.Seeders
                       Inaltime = 125,
                       Greutate = 35,
                       Alergie = "kiwi",
-                      TutoreId = tutoreid,
+                      TutoreId = tutoreId,
                       UserId = new Guid("8dd37e5f-ba67-4fae-6606-08d9156da120")
                   };
 
@@ -181,8 +181,7 @@ namespace Softbinator_Project.Seeders
                   _context.SaveChanges();
               }
 
-              #endregion
-
+            #endregion
 
             #region Cabinet
 
@@ -223,9 +222,11 @@ namespace Softbinator_Project.Seeders
                 _context.Cabinete.AddRange(addCabinete);
                 _context.SaveChanges();
             }
+
             #endregion
 
             #region Doctor
+
             var doctori = _context.Doctori.Any();
 
             _context.SaveChanges();
@@ -279,8 +280,7 @@ namespace Softbinator_Project.Seeders
                 _context.SaveChanges();
             }
             #endregion
-
-            
+           
             #region Programare
 
             var programari = _context.Programari.Any();
@@ -322,8 +322,7 @@ namespace Softbinator_Project.Seeders
 
             }
             
-            #endregion
-            
+            #endregion           
         }
             
     }

@@ -10,6 +10,7 @@ namespace Softbinator_Project.Services.ProgramareServices
     {
         List<ProgramareDto> GetProgramari();
         void CreateProgramare(ProgramareDto model);
-        void EditProgramare(int id, ProgramareDto model);
+        void EditProgramare(ProgramareDto model);
+        void DeleteProgramare(int id);
     }
 }

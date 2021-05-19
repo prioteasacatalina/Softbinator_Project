@@ -25,8 +25,6 @@ namespace Softbinator_Project.DTOs
 
         public List<ProgramareViewModel> Programari { get; set; }
 
-        //public ICollection<Programare> Programari { get; set; }
-
         public static Expression<Func<Entities.Pacient, PacientViewModel>> Projection
         {
             get
@@ -39,7 +37,6 @@ namespace Softbinator_Project.DTOs
                     Inaltime = PacientDB.Inaltime,
                     Greutate = PacientDB.Greutate,
                     Alergie = PacientDB.Alergie,
-                    //Programari = PacientDB.Programari
                 };
             }
         }

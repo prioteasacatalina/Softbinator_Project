@@ -86,7 +86,6 @@ namespace Softbinator_Project
             {
                 opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
                 opt.AddPolicy("Doctor", policy => policy.RequireRole("Doctor", "Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
-             //   opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
                 opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient", "Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
             });
 

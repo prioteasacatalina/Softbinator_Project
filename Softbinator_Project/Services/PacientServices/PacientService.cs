@@ -33,9 +33,8 @@ namespace Softbinator_Project.Services.PacientServices
             _context.SaveChanges();
         }
 
-        public void EditPacient(int id, PacientDto model)
+        public void EditPacient(PacientDto model)
         {
-            var pacienti = _context.Pacienti.ToList();
             var pacient = _context.Pacienti.FirstOrDefault(x => x.Id == model.Id);
             pacient.Nume = model.Nume;
             pacient.Prenume = model.Prenume;
@@ -53,6 +52,13 @@ namespace Softbinator_Project.Services.PacientServices
         {
             var pacienti = _context.Pacienti.Select(PacientDto.Projection).ToList();          
             return pacienti;
+        }
+
+        public void DeletePacient(int id)
+        {
+            var pacient = _context.Pacienti.FirstOrDefault(x => x.Id == id);
+            _context.Pacienti.Remove(pacient);
+            _context.SaveChanges();
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Softbinator_Project.DTOs;
-using Softbinator_Project.Services.CabinetServices;
+using Softbinator_Project.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,38 +12,46 @@ namespace Softbinator_Project.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class CabinetController : ControllerBase
+    public class TutoreController : ControllerBase
     {
         private readonly Softbinator_ProjectContext _context;
-        private readonly ICabinetService _cabinetService;
+        private readonly ITutoreService _tutoreService;
 
-        public CabinetController(Softbinator_ProjectContext context, ICabinetService cabinetService)
+        public TutoreController(Softbinator_ProjectContext context, ITutoreService tutoreService)
         {
             _context = context;
-            _cabinetService = cabinetService;
+            _tutoreService = tutoreService;
         }
 
         [Authorize(Policy = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _cabinetService.GetCabinete();
+            var result = _tutoreService.GetTutori();
             return Ok(result);
         }
 
         [Authorize(Policy = "Admin")]
         [HttpPost]
-        public IActionResult Create(CabinetDto model)
+        public IActionResult Create(TutoreDto model)
         {
-            _cabinetService.CreateCabinet(model);
+            _tutoreService.CreateTutore(model);
             return Ok();
         }
 
         [Authorize(Policy = "Admin")]
-        [HttpPut] //("{id}")
-        public IActionResult Edit(int id, CabinetDto model) //[FromRoute]
+        [HttpPut] 
+        public IActionResult Edit(TutoreDto model)
         {
-            _cabinetService.EditCabinet(id, model);
+            _tutoreService.EditTutore(model);
+            return Ok();
+        }
+
+        [Authorize(Policy = "Admin")]
+        [HttpDelete]
+        public IActionResult DeleteTutore(int id)
+        {
+            _tutoreService.DeleteTutore(id);
             return Ok();
         }
     }

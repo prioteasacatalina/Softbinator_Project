@@ -11,6 +11,7 @@ namespace Softbinator_Project.Services
     {
         List<TutoreDto> GetTutori();
         void CreateTutore(TutoreDto model);
-        void EditTutore(int id, TutoreDto model);
+        void EditTutore(TutoreDto model);
+        void DeleteTutore(int id);
     }
 }

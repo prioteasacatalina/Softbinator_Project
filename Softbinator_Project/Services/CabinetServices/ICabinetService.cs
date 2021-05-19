@@ -11,6 +11,7 @@ namespace Softbinator_Project.Services.CabinetServices
     {
         List<CabinetDto> GetCabinete();
         void CreateCabinet(CabinetDto model);
-        void EditCabinet(int id, CabinetDto model);
+        void EditCabinet(CabinetDto model);
+        void DeleteCabinet(int id);
     }
 }

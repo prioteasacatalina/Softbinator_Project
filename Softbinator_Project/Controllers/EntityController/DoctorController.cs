@@ -40,10 +40,18 @@ namespace Softbinator_Project.Controllers
         }
 
         [Authorize(Policy = "Doctor")]
-        [HttpPut] //("{id}")
-        public IActionResult Edit(int id, DoctorDto model) //[FromRoute]
+        [HttpPut] 
+        public IActionResult Edit(DoctorDto model) 
         {
-            _doctorService.EditDoctor(id, model);
+            _doctorService.EditDoctor(model);
+            return Ok();
+        }
+
+        [Authorize(Policy = "Admin")]
+        [HttpDelete]
+        public IActionResult DeleteDoctor(int id)
+        {
+            _doctorService.DeleteDoctor(id);
             return Ok();
         }
 

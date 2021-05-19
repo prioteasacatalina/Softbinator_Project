@@ -40,10 +40,18 @@ namespace Softbinator_Project.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        [HttpPut] //("{id}")
-        public IActionResult Edit(int id, ProgramareDto model) //[FromRoute]
+        [HttpPut] 
+        public IActionResult Edit(ProgramareDto model) 
         {
-            _programareService.EditProgramare(id, model);
+            _programareService.EditProgramare(model);
+            return Ok();
+        }
+
+        [Authorize(Policy = "Admin")]
+        [HttpDelete]
+        public IActionResult DeleteProgramare(int id)
+        {
+            _programareService.DeleteProgramare(id);
             return Ok();
         }
     }

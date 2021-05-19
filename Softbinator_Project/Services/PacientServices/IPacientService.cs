@@ -10,6 +10,7 @@ namespace Softbinator_Project.Services.PacientServices
     {
         List<PacientDto> GetPacienti();
         void CreatePacient(PacientDto model);
-        void EditPacient(int id, PacientDto model);
+        void EditPacient(PacientDto model);
+        void DeletePacient(int id);
     }
 }
